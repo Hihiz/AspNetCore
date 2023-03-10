@@ -1,15 +1,16 @@
+using Core;
+using Microsoft.Win32.SafeHandles;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.Use(async (context, next) =>
 {
-    if (context.Request.Method == HttpMethods.Get && context.Request.Query["custom"] == "true")
-    {
-        context.Response.ContentType = "text/plain";
-        await context.Response.WriteAsync("Custom Middleware /n");
-    }
     await next();
+    await context.Response.WriteAsync($"\nStatus code: {context.Response.StatusCode}");
 });
+
+app.UseMiddleware<Middleware>();
 
 app.MapGet("/", () => "Hello World!");
 
