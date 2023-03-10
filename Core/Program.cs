@@ -6,8 +6,14 @@ var app = builder.Build();
 
 app.Use(async (context, next) =>
 {
-    await next();
-    await context.Response.WriteAsync($"\nStatus code: {context.Response.StatusCode}");
+    if (context.Request.Path == "/short")
+    {
+        await context.Response.WriteAsync("Request short-circuited");
+    }
+    else
+    {
+        await next();
+    }
 });
 
 app.UseMiddleware<Middleware>();
