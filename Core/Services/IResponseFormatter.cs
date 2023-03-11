@@ -1,6 +1,6 @@
 ﻿namespace Core.Services
 {
-    interface IResponseFormatter
+    public interface IResponseFormatter
     {
         Task Format(HttpContext context, string content);
     }
