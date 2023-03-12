@@ -26,3 +26,4 @@ app.UseMiddleware<FruitMiddleware>();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
+
