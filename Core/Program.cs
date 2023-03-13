@@ -10,6 +10,9 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 var app = builder.Build();
 
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationContext>();
+SeedData.SeedDatabase(context);
+
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
