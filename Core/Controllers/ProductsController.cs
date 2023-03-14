@@ -36,5 +36,21 @@ namespace Core.Controllers
             _db.Products.Add(product);
             _db.SaveChanges();
         }
+
+        // api/products
+        [HttpPut]
+        public void UpdateProduct([FromBody] Product product)
+        {
+            _db.Update(product);
+            _db.SaveChanges();
+        }
+
+        // api/products/1
+        [HttpDelete("{id}")]
+        public void DeleteProduct(long id)
+        {
+            _db.Products.Remove(new Product { Id = id });
+            _db.SaveChanges();
+        }
     }
 }
