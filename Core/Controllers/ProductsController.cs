@@ -23,10 +23,10 @@ namespace Core.Controllers
 
         // api/products/1
         [HttpGet("{id}")]
-        public Product GetProduct([FromServices] ILogger<ProductsController> logger)
+        public Product GetProduct(long id, [FromServices] ILogger<ProductsController> logger)
         {
             logger.LogDebug("-------------------- GetProduct Action Invoked ------------------");
-            return _db.Products.FirstOrDefault();
+            return _db.Products.Find(id);
         }
     }
 }
