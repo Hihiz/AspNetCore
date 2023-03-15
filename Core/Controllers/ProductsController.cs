@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class ProductsController : Controller
     {
@@ -40,20 +41,15 @@ namespace Core.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveProduct([FromBody] Product product)
         {
-            if (ModelState.IsValid)
-            {
-                await _db.Products.AddAsync(product);
-                await _db.SaveChangesAsync();
+            await _db.Products.AddAsync(product);
+            await _db.SaveChangesAsync();
 
-                return Ok(product);
-            }
-
-            return BadRequest();
+            return Ok(product);
         }
 
         // api/products
         [HttpPut]
-        public void UpdateProduct([FromBody] Product product)
+        public void UpdateProduct(Product product)
         {
             _db.Update(product);
             _db.SaveChanges();
