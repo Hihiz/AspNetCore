@@ -1,7 +1,10 @@
-﻿using Core.Infrastructure;
+﻿using Azure;
+using Core.Infrastructure;
 using Core.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace Core.Controllers
 {
@@ -28,6 +31,21 @@ namespace Core.Controllers
                 {
                     product.Category = null;
                 }
+            }
+
+            return category;
+        }
+
+        // api/categories/1
+        [HttpPatch("{id}")]
+        public async Task<Category> PatchCategory(long id, JsonPatchDocument<Category> patchDoc)
+        {
+            Category category = await _db.Categories.FindAsync(id);
+
+            if (category != null)
+            {
+                patchDoc.ApplyTo(category);
+                await _db.SaveChangesAsync();
             }
 
             return category;

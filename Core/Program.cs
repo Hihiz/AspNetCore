@@ -9,12 +9,11 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectionLocalDb"]);
 });
 
+builder.Services.AddControllers().AddNewtonsoftJson();
 
-builder.Services.AddControllers();
-
-builder.Services.Configure<JsonOptions>(options =>
+builder.Services.Configure<MvcNewtonsoftJsonOptions>(options =>
 {
-    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
 });
 
 var app = builder.Build();

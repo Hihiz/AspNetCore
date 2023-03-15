@@ -7,23 +7,23 @@ namespace Core.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private ApplicationContext _db;
 
-        public ProductsController(ApplicationContext db)
+        public ProductController(ApplicationContext db)
         {
             _db = db;
         }
 
-        // api/products
+        // api/product
         [HttpGet]
         public IAsyncEnumerable<Product> GetProducts()
         {
             return _db.Products.AsAsyncEnumerable();
         }
 
-        // api/products/1
+        // api/product/1
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(long id)
         {
@@ -37,7 +37,7 @@ namespace Core.Controllers
             return Ok(product);
         }
 
-        // api/products
+        // api/product
         [HttpPost]
         public async Task<IActionResult> SaveProduct([FromBody] Product product)
         {
@@ -47,7 +47,7 @@ namespace Core.Controllers
             return Ok(product);
         }
 
-        // api/products
+        // api/product
         [HttpPut]
         public void UpdateProduct(Product product)
         {
@@ -55,7 +55,7 @@ namespace Core.Controllers
             _db.SaveChanges();
         }
 
-        // api/products/1
+        // api/product/1
         [HttpDelete("{id}")]
         public void DeleteProduct(long id)
         {
@@ -63,15 +63,15 @@ namespace Core.Controllers
             _db.SaveChanges();
         }
 
-        // api/products/1
+        // api/product/1
         [HttpGet("redirect")]
         public IActionResult Redirect()
         {
-            //return Redirect("/api/products/1");
+            //return Redirect("/api/product/1");
             //return RedirectToAction(nameof(GetProduct), new { Id = 1 });
             return RedirectToRoute(new
             {
-                controller = "Products",
+                controller = "Product",
                 action = "GetProduct",
                 Id = 1
             });
