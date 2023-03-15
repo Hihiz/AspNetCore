@@ -1,6 +1,7 @@
 ﻿using Core.Infrastructure;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
@@ -16,17 +17,23 @@ namespace Core.Controllers
 
         // api/products
         [HttpGet]
-        public async IAsyncEnumerable<Product> GetProducts()
+        public IAsyncEnumerable<Product> GetProducts()
         {
             return _db.Products.AsAsyncEnumerable();
         }
 
         // api/products/1
         [HttpGet("{id}")]
-        public async Task<Product> GetProduct(long id, [FromServices] ILogger<ProductsController> logger)
+        public async Task<IActionResult> GetProduct(long id)
         {
-            logger.LogDebug("-------------------- GetProduct Action Invoked ------------------");
-            return await _db.Products.FindAsync(id);
+            Product product = await _db.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
         }
 
         // api/products
