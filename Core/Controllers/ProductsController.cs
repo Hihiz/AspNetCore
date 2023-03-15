@@ -16,25 +16,25 @@ namespace Core.Controllers
 
         // api/products
         [HttpGet]
-        public IEnumerable<Product> GetProducts()
+        public async IAsyncEnumerable<Product> GetProducts()
         {
-            return _db.Products;
+            return _db.Products.AsAsyncEnumerable();
         }
 
         // api/products/1
         [HttpGet("{id}")]
-        public Product GetProduct(long id, [FromServices] ILogger<ProductsController> logger)
+        public async Task<Product> GetProduct(long id, [FromServices] ILogger<ProductsController> logger)
         {
             logger.LogDebug("-------------------- GetProduct Action Invoked ------------------");
-            return _db.Products.Find(id);
+            return await _db.Products.FindAsync(id);
         }
 
         // api/products
         [HttpPost]
-        public void SaveProduct([FromBody] Product product)
+        public async Task SaveProduct([FromBody] Product product)
         {
-            _db.Products.Add(product);
-            _db.SaveChanges();
+            await _db.Products.AddAsync(product);
+            await _db.SaveChangesAsync();
         }
 
         // api/products
