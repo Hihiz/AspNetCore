@@ -39,6 +39,7 @@ namespace Core.Controllers
 
         // api/product
         [HttpPost]
+        [Consumes("application/xml")]
         public async Task<IActionResult> SaveProduct([FromBody] Product product)
         {
             await _db.Products.AddAsync(product);

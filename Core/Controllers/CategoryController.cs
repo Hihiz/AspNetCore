@@ -21,6 +21,7 @@ namespace Core.Controllers
 
         // api/category/1
         [HttpGet("{id}")]
+        [Produces("application/json", "application/xml")]
         public async Task<Category> GetCategory(long id)
         {
             Category category = await _db.Categories.Include(c => c.Products).FirstAsync(c => c.Id == id);
