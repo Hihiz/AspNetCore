@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Core.Models.Product
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
         <title></title>
@@ -20,7 +22,7 @@
                                         <tr>
                                                 <td>Price</td>
                                                 <td>@Model.Price.ToString("c")</td>
-                                                <td>@Model.CategoryId</td>
+                                                <td>@Model.CategoryId</td>                                                
                                         </tr>
                                 </tbody>
                         </table>
