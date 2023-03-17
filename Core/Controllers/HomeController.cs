@@ -14,7 +14,7 @@ namespace Core.Controllers
 
         public async Task<IActionResult> Index(long id)
         {
-            return View("Fruit", await _db.Products.FindAsync(id));
+            return View(await _db.Products.FindAsync(id));
         }
 
         public IActionResult Common(long id)
