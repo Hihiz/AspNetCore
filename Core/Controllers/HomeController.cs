@@ -16,5 +16,10 @@ namespace Core.Controllers
         {
             return View("Fruit", await _db.Products.FindAsync(id));
         }
+
+        public IActionResult Common(long id)
+        {
+            return View("/Views/Shared/Common.cshtml");
+        }
     }
 }
