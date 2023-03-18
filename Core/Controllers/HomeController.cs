@@ -1,5 +1,6 @@
 ﻿using Core.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
