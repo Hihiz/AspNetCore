@@ -13,7 +13,7 @@ namespace Core.Controllers
             _db = db;
         }
 
-        public async Task<IActionResult> Index(long id)
+        public async Task<IActionResult> Index(long id = 1)
         {
             return View(await _db.Products.FindAsync(id));
         }
@@ -28,6 +28,12 @@ namespace Core.Controllers
             ViewBag.AveragePrice = await _db.Products.AverageAsync(p => p.Price);
 
             return View(await _db.Products.ToListAsync());
+        }
+
+        public IActionResult Redirect()
+        {
+            TempData["value"] = "TempData value";
+            return RedirectToAction("Index", new { id = 1 });
         }
     }
 }
