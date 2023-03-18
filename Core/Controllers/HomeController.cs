@@ -23,9 +23,11 @@ namespace Core.Controllers
             return View("/Views/Shared/Common.cshtml");
         }
 
-        public IActionResult List()
+        public async Task<IActionResult> List()
         {
-            return View(_db.Products);
+            ViewBag.AveragePrice = await _db.Products.AverageAsync(p => p.Price);
+
+            return View(await _db.Products.ToListAsync());
         }
     }
 }
