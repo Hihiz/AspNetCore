@@ -26,36 +26,36 @@
                                                 <td>@(Model.Price * 2)</td>
                                         </tr>
 
-                                         @if (Model.CategoryId == 1)
-                                         {
-                                                    <tr>
-                                                            <th>Category</th>
-                                                            <td>Fruits</td>
-                                                    </tr>
-                                         }
-                                         else
-                                         {
-                                                    <tr>
-                                                            <th>Category</th>
-                                                            <td>Shirts</td>
-                                                    </tr>
-                                         }
+                                        @if (Model.CategoryId == 1)
+                                        {
+                                          <tr>
+                                            <th>Category</th>
+                                             <td>Fruits</td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                          <tr>
+                                           <th>Category</th>
+                                           <td>Shirts</td>
+                                           </tr>
+                                        }
 
 
                                            <tr>
                                                 <th>Fruit type</th>
-                                                <td>
+                                                                <td>
                                             @switch (Model.Name)
                                             {
                                                 case "Apples":
-                                                 @: It's apples
-                                                break;
+                                                    @: It's apples
+                                                    break;
                                                 case "Lemons":
-                                                 @: It's lemons
-                                                break;
+                                                    @: It's lemons
+                                                    break;
                                                 default:
-                                                @Model.Name
-                                                 break;
+                                                    @Model.Name
+                                                    break;
                                             }
                                                 </td>
                                         </tr>

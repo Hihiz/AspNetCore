@@ -22,5 +22,10 @@ namespace Core.Controllers
         {
             return View("/Views/Shared/Common.cshtml");
         }
+
+        public IActionResult List()
+        {
+            return View(_db.Products);
+        }
     }
 }
