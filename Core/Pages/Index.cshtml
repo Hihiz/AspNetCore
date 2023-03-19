@@ -23,6 +23,12 @@
         {
             Product = await _db.Products.FindAsync(id);
 
+            if (Product == null)
+            {
+                //return NotFound();
+                return RedirectToPage("NotFound");
+            }
+
             return Page();
         }
     }
