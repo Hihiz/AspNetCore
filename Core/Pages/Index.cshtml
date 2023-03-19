@@ -19,9 +19,11 @@
             _db = db;
         }
 
-        public async Task OnGetAsync(long id = 1)
+        public async Task<IActionResult> OnGetAsync(long id = 1)
         {
             Product = await _db.Products.FindAsync(id);
+
+            return Page();
         }
     }
 }
