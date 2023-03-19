@@ -10,12 +10,16 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddRazorPages();
+
 var app = builder.Build();
 
 app.MapControllers();
 
 //app.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");
 app.MapDefaultControllerRoute();
+
+app.MapRazorPages();
 
 app.UseStaticFiles();
 
