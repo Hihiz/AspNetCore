@@ -1,10 +1,10 @@
 ﻿using Core.Infrastructure;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Components
 {
-    [ViewComponent(Name = "JuicyFruit")]
     public class ProductListingViewComponent : ViewComponent
     {
         private ApplicationContext _db;
@@ -16,9 +16,9 @@ namespace Core.Components
             _db = db;
         }
 
-        public string Invoke()
+        public IViewComponentResult Invoke()
         {
-            return $"There are {_db.Products.Count()} products";
+            return View(_db.Products.Include(p => p.Category).ToList());
         }
     }
 }
