@@ -5,16 +5,19 @@
 
 <div class="col-12 m-2">
         <h2 class="text-white bg-info p-2">Product</h2>
-        
+
 </div>
 <div class="col-12 m-2">
     @if (TempData["value"] != null)
     {
-                    <div class="bg-info text-white p-2">
+                            <div class="bg-info text-white p-2">
             @TempData["value"]
-                    </div>
+                            </div>
     }
 
- <vc:product-listing />
+    @*<vc:product-listing class-name="danger " />*@
+    @*<vc:product-listing />*@
+
+    @await Component.InvokeAsync("ProductListing", new {className = "danger"})
 
 </div>
