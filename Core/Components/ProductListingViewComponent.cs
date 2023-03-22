@@ -17,10 +17,16 @@ namespace Core.Components
             _db = db;
         }
 
-        public IViewComponentResult Invoke()
+        public string Invoke()
         {
-            //return Content("This is a <h3><i>string</i></h3>");
-            return new HtmlContentViewComponentResult(new HtmlString("This is a <h3><i>string</i></h3>"));
+            if (RouteData.Values["controller"] != null)
+            {
+                return "Controller request";
+            }
+            else
+            {
+                return "Razor Page request";
+            }
         }
     }
 }
