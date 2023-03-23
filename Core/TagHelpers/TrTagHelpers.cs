@@ -2,6 +2,7 @@
 
 namespace Core.TagHelpers
 {
+    [HtmlTargetElement("tr", Attributes = "bg-color", ParentTag = "thead")]
     public class TrTagHelpers : TagHelper
     {
         public string BgColor { get; set; } = "dark";
