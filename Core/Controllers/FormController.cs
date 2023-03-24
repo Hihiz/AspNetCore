@@ -37,5 +37,10 @@ namespace Core.Controllers
         {
             return View();
         }
+
+        public string Header([FromHeader(Name = "Accept-Language")] string accept)
+        {
+            return $"Header: {accept}";
+        }
     }
 }
