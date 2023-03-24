@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class FormController : Controller
     {
         private ApplicationContext _db;
@@ -14,7 +15,7 @@ namespace Core.Controllers
 
         public async Task<IActionResult> Index(long id = 1)
         {
-            return View(await _db.Products.FindAsync(id));
+            ViewBag.Categories = new SelectedList
         }
 
         [HttpPost]
