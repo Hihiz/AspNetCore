@@ -1,11 +1,11 @@
 ﻿using Core.Infrastructure;
+using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
-    //[AutoValidateAntiforgeryToken]
     public class FormController : Controller
     {
         private ApplicationContext _db;
@@ -22,13 +22,13 @@ namespace Core.Controllers
         }
 
         [HttpPost]
-        //[IgnoreAntiforgeryToken]
-        public IActionResult SubmitForm()
+        //public IActionResult SubmitForm(string name, decimal price)
+        public IActionResult SubmitForm([Bind("Name")] Product product)
         {
-            foreach (string key in Request.Form.Keys)
-            {
-                TempData[key] = string.Join(", ", Request.Form[key]);
-            }
+            //TempData["name param"] = name;
+            //TempData["price param"] = price.ToString();
+
+            TempData["product"] = System.Text.Json.JsonSerializer.Serialize(product);
 
             return RedirectToAction("Results");
         }
