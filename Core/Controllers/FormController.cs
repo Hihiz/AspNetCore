@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
-    [AutoValidateAntiforgeryToken]
+    //[AutoValidateAntiforgeryToken]
     public class FormController : Controller
     {
         private ApplicationContext _db;
@@ -22,6 +22,7 @@ namespace Core.Controllers
         }
 
         [HttpPost]
+        //[IgnoreAntiforgeryToken]
         public IActionResult SubmitForm()
         {
             foreach (string key in Request.Form.Keys)
