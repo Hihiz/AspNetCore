@@ -15,7 +15,7 @@ namespace Core.Controllers
             _db = db;
         }
 
-        public async Task<IActionResult> Index(long id = 1)
+        public async Task<IActionResult> Index([FromQuery] long id = 1)
         {
             ViewBag.Categories = new SelectList(_db.Categories, "Id", "Name");
             return View(await _db.Products.Include(p => p.Category).FirstAsync(p => p.Id == id));
