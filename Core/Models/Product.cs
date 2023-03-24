@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Core.Models
 {
@@ -8,7 +7,6 @@ namespace Core.Models
     {
         public long Id { get; set; }
         [Required]
-        //[BindNever]
         public string Name { get; set; }
         [Required]
         [Range(0.01, double.MaxValue)]
@@ -18,7 +16,6 @@ namespace Core.Models
         [Required]
         [Range(1, long.MaxValue)]
         public long CategoryId { get; set; }
-        //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Category Category { get; set; }
     }
 }
