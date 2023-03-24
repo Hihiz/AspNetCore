@@ -1,5 +1,7 @@
 ﻿using Core.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.Controllers
 {
@@ -15,7 +17,8 @@ namespace Core.Controllers
 
         public async Task<IActionResult> Index(long id = 1)
         {
-            ViewBag.Categories = new SelectedList
+            ViewBag.Categories = new SelectList(_db.Categories, "Id", "Name");
+            return View(await _db.Products.Include(p => p.Category).FirstAsync(p => p.Id == id));
         }
 
         [HttpPost]
