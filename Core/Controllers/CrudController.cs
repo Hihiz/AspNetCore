@@ -27,5 +27,19 @@ namespace Core.Controllers
         }
 
         public IActionResult Create() => View("ProductEditor", ViewModelFactory.Create(new Product(), _db.Categories));
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromForm] Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Products.Add(product);
+                await _db.SaveChangesAsync();
+
+                return RedirectToAction("Index");
+            }
+
+            return View("ProductEditor", ViewModelFactory.Create(product, _db.Categories));
+        }
     }
 }
