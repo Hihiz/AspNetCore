@@ -24,9 +24,9 @@ app.MapControllers();
 app.MapDefaultControllerRoute();
 
 app.MapControllerRoute(
-    name: "Areas",
-    pattern: "{area:exists}/{controller=Users}/{action=Index}/{id?}"
-    );
+        name: "Areas",
+        pattern: "{area:exists}/{controller=User}/{action=Index}/{id?}"
+);
 
 app.UseStaticFiles();
 
