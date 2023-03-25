@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Core.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class UserController : Controller
     {
         private UserManager<IdentityUser> _userManager;
@@ -12,10 +13,9 @@ namespace Core.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-        [Area("Admin")]
-        public IActionResult Index()
-        {
-            return View(_userManager.Users.ToList());
-        }
+
+        public IActionResult Index() => View(_userManager.Users.ToList());
+
+        public IActionResult Create() => View();
     }
 }
