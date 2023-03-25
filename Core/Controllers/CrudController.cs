@@ -41,5 +41,19 @@ namespace Core.Controllers
 
             return View("ProductEditor", ViewModelFactory.Create(product, _db.Categories));
         }
+
+        public async Task<IActionResult> Edit(long id)
+        {
+            Product product = await _db.Products.FindAsync(id);
+
+            if (product != null)
+            {
+                ProductViewModel model = ViewModelFactory.Edit(product, _db.Categories);
+
+                return View("ProductEditor", model);
+            }
+
+            return View("ProductEditor", ViewModelFactory.Create(new Product(), _db.Categories));
+        }
     }
 }
